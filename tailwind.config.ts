@@ -52,6 +52,15 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				empatica: {
+					primary: '#4A6FA5',    // Azul principal
+					secondary: '#61B292',  // Verde empático
+					accent: '#9B6EAF',     // Púrpura acento
+					light: '#E8F1F5',      // Azul muy claro
+					dark: '#2D3748',       // Azul oscuro
+					warning: '#F6AD55',    // Naranja suave
+					success: '#68D391',    // Verde éxito
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
