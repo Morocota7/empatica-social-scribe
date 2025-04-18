@@ -1,4 +1,3 @@
-
 import { Conversation, Contact, Message, SocialAccount, ToneSettings, MessageSource, SentimentType } from "../types";
 
 // Función para generar un ID aleatorio
@@ -20,10 +19,10 @@ export const mockSocialAccounts: SocialAccount[] = [
 
 // Datos de ejemplo para configuraciones de tono
 export const mockToneSettings: ToneSettings[] = [
-  { platform: 'instagram', formality: 5, empathy: 8, creativity: 7, conciseness: 6, humor: 7 },
-  { platform: 'facebook', formality: 7, empathy: 7, creativity: 5, conciseness: 6, humor: 5 },
-  { platform: 'whatsapp', formality: 4, empathy: 9, creativity: 6, conciseness: 7, humor: 8 },
-  { platform: 'direct', formality: 6, empathy: 8, creativity: 7, conciseness: 7, humor: 6 },
+  { platform: 'instagram', formality: 5, empathy: 8, creativity: 7, conciseness: 6, humor: 7, responseSpeed: 8, academicLevel: 6 },
+  { platform: 'facebook', formality: 7, empathy: 7, creativity: 5, conciseness: 6, humor: 5, responseSpeed: 6, academicLevel: 7 },
+  { platform: 'whatsapp', formality: 4, empathy: 9, creativity: 6, conciseness: 7, humor: 8, responseSpeed: 9, academicLevel: 5 },
+  { platform: 'direct', formality: 6, empathy: 8, creativity: 7, conciseness: 7, humor: 6, responseSpeed: 7, academicLevel: 6 },
 ];
 
 // Nombres de contactos de ejemplo
