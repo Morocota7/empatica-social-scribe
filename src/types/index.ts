@@ -1,3 +1,4 @@
+
 export type MessageSource = 'instagram' | 'facebook' | 'whatsapp' | 'direct';
 
 export type SentimentType = 'positive' | 'neutral' | 'negative';
@@ -45,6 +46,9 @@ export interface SocialAccount {
   username: string;
   connected: boolean;
   lastSync?: Date;
+  accessToken?: string;
+  refreshToken?: string;
+  expiresAt?: Date;
 }
 
 export interface ToneSettings {
@@ -54,8 +58,8 @@ export interface ToneSettings {
   creativity: number; // 1-10
   conciseness: number; // 1-10
   humor: number; // 1-10
-  responseSpeed: number; // 1-10 (nueva)
-  academicLevel: number; // 1-10 (nueva)
+  responseSpeed: number; // 1-10
+  academicLevel: number; // 1-10
 }
 
 export interface AppSettings {
@@ -64,4 +68,19 @@ export interface AppSettings {
   autoRespond: boolean;
   language: string;
   notifications: boolean;
+}
+
+export interface AuthResponse {
+  success: boolean;
+  accessToken?: string;
+  refreshToken?: string;
+  expiresIn?: number;
+  error?: string;
+}
+
+export interface SocialApiConfig {
+  clientId: string;
+  clientSecret: string;
+  redirectUri: string;
+  scopes: string[];
 }

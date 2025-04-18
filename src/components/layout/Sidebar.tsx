@@ -15,7 +15,7 @@ const Sidebar = () => {
       <div className="p-4 border-b border-gray-200">
         <Link to="/">
           <h2 className="text-2xl font-bold text-empatica-primary flex items-center gap-2">
-            <span className="text-empatica-accent">E</span>mpatica
+            <span className="text-empatica-accent">H</span>umanizer
           </h2>
           <p className="text-sm text-gray-500">Asistente empático para redes sociales</p>
         </Link>
