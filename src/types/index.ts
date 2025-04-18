@@ -1,4 +1,3 @@
-
 export type MessageSource = 'instagram' | 'facebook' | 'whatsapp' | 'direct';
 
 export type SentimentType = 'positive' | 'neutral' | 'negative';
@@ -55,6 +54,8 @@ export interface ToneSettings {
   creativity: number; // 1-10
   conciseness: number; // 1-10
   humor: number; // 1-10
+  responseSpeed: number; // 1-10 (nueva)
+  academicLevel: number; // 1-10 (nueva)
 }
 
 export interface AppSettings {

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -182,6 +181,46 @@ const ToneSettings = () => {
                     <div className="flex justify-between text-xs text-gray-500 mt-1">
                       <span>Serio</span>
                       <span>Divertido</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-2">
+                      <label className="text-sm font-medium">Velocidad de respuesta</label>
+                      <span className="text-sm">{setting.responseSpeed}/10</span>
+                    </div>
+                    <Slider
+                      value={[setting.responseSpeed]}
+                      min={1}
+                      max={10}
+                      step={1}
+                      onValueChange={(value) => 
+                        handleSettingChange(setting.platform, "responseSpeed", value[0])
+                      }
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>Pausado</span>
+                      <span>Inmediato</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="flex justify-between mb-2">
+                      <label className="text-sm font-medium">Nivel académico</label>
+                      <span className="text-sm">{setting.academicLevel}/10</span>
+                    </div>
+                    <Slider
+                      value={[setting.academicLevel]}
+                      min={1}
+                      max={10}
+                      step={1}
+                      onValueChange={(value) => 
+                        handleSettingChange(setting.platform, "academicLevel", value[0])
+                      }
+                    />
+                    <div className="flex justify-between text-xs text-gray-500 mt-1">
+                      <span>Básico</span>
+                      <span>Avanzado</span>
                     </div>
                   </div>
                 </div>

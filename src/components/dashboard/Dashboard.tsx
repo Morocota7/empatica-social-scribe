@@ -1,10 +1,11 @@
-
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import StatCard from "./StatCard";
-import SentimentChart from "./SentimentChart";
-import { FiMessageSquare, FiUsers, FiClock, FiMessageCircle, FiBarChart2 } from "react-icons/fi";
-import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import StatCard from "./StatCard"
+import SentimentChart from "./SentimentChart"
+import TrendsChart from "./TrendsChart"
+import FileUploader from "./FileUploader"
+import { FiMessageSquare, FiUsers, FiClock, FiMessageCircle, FiBarChart2 } from "react-icons/fi"
+import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa"
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 
 const Dashboard = () => {
   // Datos simulados para el gráfico de actividad diaria
@@ -63,7 +64,84 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <SentimentChart />
-        
+        <TrendsChart />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <FileUploader />
+        <Card className="bg-white">
+          <CardHeader className="pb-0">
+            <CardTitle className="text-base font-medium">Conversaciones recientes</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-2">
+            <div className="space-y-3">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div key={index} className="flex items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs">
+                      {["MG", "JL", "AP", "CR", "LS"][index]}
+                    </div>
+                    <div>
+                      <div className="font-medium text-sm flex items-center gap-1">
+                        {["María García", "Juan López", "Ana Pérez", "Carlos Rodríguez", "Laura Sánchez"][index]}
+                        {[<FaInstagram key="i" className="text-[#E1306C] text-xs" />, 
+                          <FaFacebook key="f" className="text-[#1877F2] text-xs" />, 
+                          <FaWhatsapp key="w" className="text-[#25D366] text-xs" />, 
+                          <FaInstagram key="i2" className="text-[#E1306C] text-xs" />, 
+                          <FaFacebook key="f2" className="text-[#1877F2] text-xs" />
+                        ][index]}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {["¿Tienen disponibilidad?", "Gracias por la ayuda", "Necesito cambiar mi pedido", "¿Cuándo llega mi envío?", "Quiero hacer una consulta"][index]}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {["12m", "1h", "3h", "5h", "8h"][index]}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <Card className="bg-white">
+          <CardHeader className="pb-0">
+            <CardTitle className="text-base font-medium">Temas populares</CardTitle>
+          </CardHeader>
+          <CardContent className="pt-2">
+            <div className="space-y-3">
+              {[
+                { topic: "Consultas de producto", count: 86, sentiment: "positive" },
+                { topic: "Tiempos de entrega", count: 64, sentiment: "neutral" },
+                { topic: "Proceso de devolución", count: 42, sentiment: "negative" },
+                { topic: "Atención al cliente", count: 38, sentiment: "positive" },
+                { topic: "Precios y promociones", count: 27, sentiment: "neutral" },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div 
+                      className={`w-2 h-2 rounded-full ${
+                        item.sentiment === "positive" 
+                          ? "bg-green-500" 
+                          : item.sentiment === "negative" 
+                          ? "bg-red-500" 
+                          : "bg-amber-500"
+                      }`}
+                    ></div>
+                    <span className="text-sm">{item.topic}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-sm font-medium">{item.count}</span>
+                    <FiBarChart2 className="text-gray-400" size={14} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
         <Card className="bg-white">
           <CardHeader className="pb-0">
             <CardTitle className="text-base font-medium">Actividad por plataforma</CardTitle>
@@ -115,82 +193,8 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <Card className="bg-white">
-          <CardHeader className="pb-0">
-            <CardTitle className="text-base font-medium">Conversaciones recientes</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-2">
-            <div className="space-y-3">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <div key={index} className="flex items-center justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs">
-                      {["MG", "JL", "AP", "CR", "LS"][index]}
-                    </div>
-                    <div>
-                      <div className="font-medium text-sm flex items-center gap-1">
-                        {["María García", "Juan López", "Ana Pérez", "Carlos Rodríguez", "Laura Sánchez"][index]}
-                        {[<FaInstagram key="i" className="text-[#E1306C] text-xs" />, 
-                          <FaFacebook key="f" className="text-[#1877F2] text-xs" />, 
-                          <FaWhatsapp key="w" className="text-[#25D366] text-xs" />, 
-                          <FaInstagram key="i2" className="text-[#E1306C] text-xs" />, 
-                          <FaFacebook key="f2" className="text-[#1877F2] text-xs" />
-                        ][index]}
-                      </div>
-                      <div className="text-xs text-gray-500">
-                        {["¿Tienen disponibilidad?", "Gracias por la ayuda", "Necesito cambiar mi pedido", "¿Cuándo llega mi envío?", "Quiero hacer una consulta"][index]}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {["12m", "1h", "3h", "5h", "8h"][index]}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-white">
-          <CardHeader className="pb-0">
-            <CardTitle className="text-base font-medium">Temas populares</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-2">
-            <div className="space-y-3">
-              {[
-                { topic: "Consultas de producto", count: 86, sentiment: "positive" },
-                { topic: "Tiempos de entrega", count: 64, sentiment: "neutral" },
-                { topic: "Proceso de devolución", count: 42, sentiment: "negative" },
-                { topic: "Atención al cliente", count: 38, sentiment: "positive" },
-                { topic: "Precios y promociones", count: 27, sentiment: "neutral" },
-              ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div 
-                      className={`w-2 h-2 rounded-full ${
-                        item.sentiment === "positive" 
-                          ? "bg-green-500" 
-                          : item.sentiment === "negative" 
-                          ? "bg-red-500" 
-                          : "bg-amber-500"
-                      }`}
-                    ></div>
-                    <span className="text-sm">{item.topic}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-sm font-medium">{item.count}</span>
-                    <FiBarChart2 className="text-gray-400" size={14} />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Dashboard
