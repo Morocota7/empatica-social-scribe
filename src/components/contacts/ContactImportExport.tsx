@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { Import, Export } from "lucide-react";
+import { Download, Upload } from "lucide-react";
 
 export const ContactImportExport = () => {
   const handleExport = () => {
@@ -38,7 +38,7 @@ export const ContactImportExport = () => {
         onClick={() => document.getElementById("import-csv")?.click()}
         className="flex items-center gap-2"
       >
-        <Import className="h-4 w-4" />
+        <Upload className="h-4 w-4" />
         Importar Contactos
       </Button>
       <input
@@ -49,7 +49,7 @@ export const ContactImportExport = () => {
         onChange={handleImport}
       />
       <Button onClick={handleExport} className="flex items-center gap-2">
-        <Export className="h-4 w-4" />
+        <Download className="h-4 w-4" />
         Exportar Contactos
       </Button>
     </div>
