@@ -9,6 +9,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ConversationsPage from "./pages/ConversationsPage";
 import SettingsPage from "./pages/SettingsPage";
 import ContactsPage from "./pages/ContactsPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 import NotFound from "./pages/NotFound";
 import AuthCallback from "./components/auth/AuthCallback";
 
