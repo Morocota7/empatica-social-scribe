@@ -1,10 +1,7 @@
 
 import StatsOverview from "./StatsOverview"
 import SentimentChart from "./SentimentChart"
-import TrendsChart from "./TrendsChart"
 import FileUploader from "./FileUploader"
-import GeoAnalytics from "./GeoAnalytics"
-import PlatformComparison from "./PlatformComparison"
 import RecentConversations from "./RecentConversations"
 import TrendingTopics from "./TrendingTopics"
 import ActivityByPlatform from "./ActivityByPlatform"
@@ -18,12 +15,7 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <SentimentChart />
-        <TrendsChart />
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <GeoAnalytics />
-        <PlatformComparison />
+        <ActivityByPlatform />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -33,7 +25,6 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <TrendingTopics />
-        <ActivityByPlatform />
       </div>
     </div>
   )

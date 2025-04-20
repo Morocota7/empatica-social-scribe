@@ -52,11 +52,14 @@ const Sidebar = () => {
           </Link>
         </Button>
         <Button 
-          variant="ghost" 
+          variant={currentPath === "/analytics" ? "default" : "ghost"} 
           className="w-full justify-start gap-2"
+          asChild
         >
-          <FiPieChart />
-          <span>Análisis</span>
+          <Link to="/analytics">
+            <FiPieChart />
+            <span>Análisis</span>
+          </Link>
         </Button>
         <Button 
           variant={currentPath === "/settings" ? "default" : "ghost"} 

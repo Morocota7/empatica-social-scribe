@@ -25,6 +25,7 @@ const App = () => (
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/conversations" element={<ConversationsPage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/auth/callback/:platform" element={<AuthCallback />} />
           <Route path="/index" element={<Index />} />
@@ -33,6 +34,6 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+)
 
-export default App;
+export default App
