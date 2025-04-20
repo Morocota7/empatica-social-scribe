@@ -1,8 +1,11 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import StatCard from "./StatCard"
 import SentimentChart from "./SentimentChart"
 import TrendsChart from "./TrendsChart"
 import FileUploader from "./FileUploader"
+import GeoAnalytics from "./GeoAnalytics"
+import PlatformComparison from "./PlatformComparison"
 import { FiMessageSquare, FiUsers, FiClock, FiMessageCircle, FiBarChart2 } from "react-icons/fi"
 import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
@@ -65,6 +68,11 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <SentimentChart />
         <TrendsChart />
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <GeoAnalytics />
+        <PlatformComparison />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

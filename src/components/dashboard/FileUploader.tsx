@@ -2,7 +2,8 @@
 import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Upload, File, X } from "lucide-react"
+import { Upload, File, X, HelpCircle } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 const FileUploader = () => {
   const [files, setFiles] = useState<File[]>([])
@@ -21,9 +22,27 @@ const FileUploader = () => {
   return (
     <Card className="bg-white">
       <CardHeader className="pb-0">
-        <CardTitle className="text-base font-medium">Documentos de Referencia</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-base font-medium">Base de Conocimiento para IA</CardTitle>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-6 w-6">
+                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p>Los documentos subidos aquí servirán como base de conocimiento para que el chatbot responda preguntas relacionadas con tu negocio.</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
       </CardHeader>
       <CardContent className="pt-2">
+        <div className="bg-blue-50 p-3 rounded-md mb-3 text-xs text-blue-700">
+          Sube documentos relevantes para entrenar a tu chatbot y mejorar sus respuestas. Se aceptan PDF, DOCX, TXT y archivos de imagen.
+        </div>
+        
         <div className="flex flex-col gap-4">
           <div className="flex justify-center items-center border-2 border-dashed border-gray-200 rounded-lg p-6">
             <label className="flex flex-col items-center gap-2 cursor-pointer">
