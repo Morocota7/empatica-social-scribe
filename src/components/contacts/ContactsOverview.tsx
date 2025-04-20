@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ContactList } from "./ContactList";
 import { ContactImportExport } from "./ContactImportExport";
 import { BroadcastCampaigns } from "./BroadcastCampaigns";
-import { FiUsers, FiMail, FiClock } from "lucide-react";
+import { Users, Mail, Clock } from "lucide-react";
 
 export const ContactsOverview = () => {
   const [activeTab, setActiveTab] = useState("all");
@@ -15,15 +15,15 @@ export const ContactsOverview = () => {
       <div className="flex justify-between items-center">
         <TabsList>
           <TabsTrigger value="all" className="flex items-center gap-2">
-            <FiUsers />
+            <Users />
             Todos los Contactos
           </TabsTrigger>
           <TabsTrigger value="frequent" className="flex items-center gap-2">
-            <FiClock />
+            <Clock />
             Clientes Frecuentes
           </TabsTrigger>
           <TabsTrigger value="pending" className="flex items-center gap-2">
-            <FiMail />
+            <Mail />
             Seguimiento Pendiente
           </TabsTrigger>
         </TabsList>

@@ -67,8 +67,8 @@ export const ContactList = ({ filter }: ContactListProps) => {
               </TableCell>
               <TableCell>
                 <Badge variant={
-                  contact.sentiment === "positive" ? "success" :
-                  contact.sentiment === "negative" ? "destructive" : "default"
+                  contact.sentiment === "positive" ? "default" :
+                  contact.sentiment === "negative" ? "destructive" : "secondary"
                 }>
                   {contact.sentiment}
                 </Badge>
