@@ -1,21 +1,13 @@
 
-import GeoAnalytics from "./GeoAnalytics"
-import PlatformComparison from "./PlatformComparison"
-import TrendsChart from "./TrendsChart"
+import AnalyticsOverview from "./AnalyticsOverview"
+import DetailedAnalytics from "./DetailedAnalytics"
 
 const Analytics = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold">Análisis</h1>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <GeoAnalytics />
-        <PlatformComparison />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <TrendsChart />
-      </div>
+      <AnalyticsOverview />
+      <DetailedAnalytics />
     </div>
   )
 }
