@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 import { Button } from "@/components/ui/button"
@@ -13,7 +14,6 @@ const trendData = [
 
 const TrendsChart = () => {
   const handleDownloadPDF = () => {
-    // Aquí iría la lógica para generar y descargar el PDF
     console.log("Descargando informe PDF...")
   }
 

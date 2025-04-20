@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { useState } from "react"
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from "recharts"
-import { MapPin, Users, Calendar, Clock } from "lucide-react"
+import { MapPin, Users, Clock } from "lucide-react"
 
 // Datos simulados para análisis geográfico
 const locationData = [
