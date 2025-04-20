@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { MessageSource } from "@/types";
 import { mockSocialAccounts } from "@/utils/mock-data";
@@ -43,11 +42,14 @@ const Sidebar = () => {
           </Link>
         </Button>
         <Button 
-          variant="ghost" 
+          variant={currentPath === "/contacts" ? "default" : "ghost"} 
           className="w-full justify-start gap-2"
+          asChild
         >
-          <FiUsers />
-          <span>Contactos</span>
+          <Link to="/contacts">
+            <FiUsers />
+            <span>Contactos</span>
+          </Link>
         </Button>
         <Button 
           variant="ghost" 

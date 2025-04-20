@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import DashboardPage from "./pages/DashboardPage";
 import ConversationsPage from "./pages/ConversationsPage";
 import SettingsPage from "./pages/SettingsPage";
+import ContactsPage from "./pages/ContactsPage";
 import NotFound from "./pages/NotFound";
 import AuthCallback from "./components/auth/AuthCallback";
 
@@ -23,11 +24,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/conversations" element={<ConversationsPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/auth/callback/:platform" element={<AuthCallback />} />
-          {/* Redirigir la ruta "/" a la landing page */}
           <Route path="/index" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
