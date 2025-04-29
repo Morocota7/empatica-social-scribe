@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button"
 import { FileDown } from "lucide-react"
 
 const trendData = [
-  { name: "Ene", productos: 35, publicaciones: 28 },
-  { name: "Feb", productos: 42, publicaciones: 32 },
-  { name: "Mar", productos: 58, publicaciones: 45 },
-  { name: "Abr", productos: 45, publicaciones: 38 },
-  { name: "May", productos: 62, publicaciones: 52 },
+  { name: "Ene", hombres: 45, mujeres: 55 },
+  { name: "Feb", hombres: 38, mujeres: 62 },
+  { name: "Mar", hombres: 42, mujeres: 58 },
+  { name: "Abr", hombres: 40, mujeres: 60 },
+  { name: "May", hombres: 35, mujeres: 65 },
 ]
 
 const TrendsChart = () => {
@@ -21,7 +21,7 @@ const TrendsChart = () => {
     <Card className="bg-white">
       <CardHeader className="pb-0">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base font-medium">Tendencias</CardTitle>
+          <CardTitle className="text-base font-medium">Tendencias por Género</CardTitle>
           <Button 
             variant="outline" 
             size="sm" 
@@ -46,14 +46,14 @@ const TrendsChart = () => {
                 }}
               />
               <Bar 
-                dataKey="productos" 
-                name="Productos" 
-                fill="#9b87f5" 
+                dataKey="hombres" 
+                name="Hombres" 
+                fill="#3b82f6" 
               />
               <Bar 
-                dataKey="publicaciones" 
-                name="Publicaciones" 
-                fill="#7E69AB" 
+                dataKey="mujeres" 
+                name="Mujeres" 
+                fill="#ec4899" 
               />
             </BarChart>
           </ResponsiveContainer>
