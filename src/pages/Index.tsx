@@ -1,9 +1,13 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { FiMessageCircle, FiBarChart2, FiSettings } from "react-icons/fi";
 import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
+import { useAuth } from "@/hooks/useAuth";
 
 const Index = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -16,7 +20,9 @@ const Index = () => {
           </div>
           <div>
             <Button asChild>
-              <Link to="/dashboard">Iniciar sesión</Link>
+              <Link to={isAuthenticated ? "/dashboard" : "/auth"}>
+                {isAuthenticated ? "Mi Dashboard" : "Iniciar sesión"}
+              </Link>
             </Button>
           </div>
         </div>

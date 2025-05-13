@@ -8,8 +8,10 @@ import { getAccessToken, setAccessToken, clearAccessToken } from '@/services/soc
 import { toast } from 'sonner';
 import { FiRefreshCw } from 'react-icons/fi';
 import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa';
+import { useAuth } from '@/hooks/useAuth';
 
 const SocialAccountsSettings = () => {
+  const { user } = useAuth();
   const [accounts, setAccounts] = useState<SocialAccount[]>([]);
   const [loading, setLoading] = useState<Record<MessageSource, boolean>>({
     instagram: false,
@@ -21,11 +23,13 @@ const SocialAccountsSettings = () => {
   // Load accounts from localStorage on component mount
   useEffect(() => {
     const loadAccounts = () => {
+      if (!user) return;
+      
       const platforms: MessageSource[] = ['instagram', 'facebook', 'whatsapp'];
       const loadedAccounts: SocialAccount[] = [];
       
       for (const platform of platforms) {
-        const authJson = localStorage.getItem(`${platform}_auth`);
+        const authJson = localStorage.getItem(`${user.id}_${platform}_auth`);
         
         if (authJson) {
           try {
@@ -49,7 +53,7 @@ const SocialAccountsSettings = () => {
               });
             } else {
               // Token is expired, clear it
-              localStorage.removeItem(`${platform}_auth`);
+              localStorage.removeItem(`${user.id}_${platform}_auth`);
               loadedAccounts.push({
                 platform,
                 username: getPlatformDisplayName(platform),
@@ -79,8 +83,15 @@ const SocialAccountsSettings = () => {
       if (
         event.origin === window.location.origin &&
         event.data?.type === 'AUTH_SUCCESS' &&
-        event.data?.platform
+        event.data?.platform &&
+        user
       ) {
+        // Store user-specific platform auth
+        const platformAuth = localStorage.getItem(`${event.data.platform}_auth`);
+        if (platformAuth) {
+          localStorage.setItem(`${user.id}_${event.data.platform}_auth`, platformAuth);
+        }
+        
         // Reload accounts after successful authentication
         loadAccounts();
       }
@@ -91,7 +102,7 @@ const SocialAccountsSettings = () => {
     return () => {
       window.removeEventListener('message', handleAuthMessage);
     };
-  }, []);
+  }, [user]);
 
   const getPlatformDisplayName = (platform: MessageSource): string => {
     switch (platform) {
@@ -120,18 +131,25 @@ const SocialAccountsSettings = () => {
   };
 
   const connectAccount = (platform: MessageSource) => {
+    if (!user) {
+      toast.error('Debes iniciar sesión para conectar una cuenta');
+      return;
+    }
+    
     setLoading(prev => ({ ...prev, [platform]: true }));
     
     try {
       initiateAuth(platform);
     } catch (error) {
       console.error(`Error connecting to ${platform}:`, error);
-      toast.error(`Error connecting to ${platform}`);
+      toast.error(`Error conectando con ${platform}`);
       setLoading(prev => ({ ...prev, [platform]: false }));
     }
   };
 
   const disconnectAccount = async (platform: MessageSource) => {
+    if (!user) return;
+    
     setLoading(prev => ({ ...prev, [platform]: true }));
     
     try {
@@ -145,7 +163,8 @@ const SocialAccountsSettings = () => {
       clearAccessToken(platform);
       
       // Clear from localStorage
-      localStorage.removeItem(`${platform}_auth`);
+      localStorage.removeItem(`${user.id}_${platform}_auth`);
+      localStorage.removeItem(`${platform}_auth`); // Also clear the general one
       
       // Update accounts list
       setAccounts(prev => 
@@ -156,10 +175,10 @@ const SocialAccountsSettings = () => {
         )
       );
       
-      toast.success(`Disconnected from ${getPlatformDisplayName(platform)}`);
+      toast.success(`Desconectado de ${getPlatformDisplayName(platform)}`);
     } catch (error) {
       console.error(`Error disconnecting from ${platform}:`, error);
-      toast.error(`Error disconnecting from ${platform}`);
+      toast.error(`Error al desconectar de ${platform}`);
     } finally {
       setLoading(prev => ({ ...prev, [platform]: false }));
     }
