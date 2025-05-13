@@ -14,7 +14,7 @@
       }
     ],
     "predeploy": [
-      "npm ci",
+      "npm ci --no-package-lock",
       "npm run build"
     ]
   }
