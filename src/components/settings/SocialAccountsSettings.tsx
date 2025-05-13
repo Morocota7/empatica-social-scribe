@@ -1,14 +1,14 @@
 
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { SocialAccount, MessageSource } from '@/types';
 import { initiateAuth, revokeAccess } from '@/services/socialAuth';
 import { getAccessToken, setAccessToken, clearAccessToken } from '@/services/socialApi';
 import { toast } from 'sonner';
-import { FiRefreshCw } from 'react-icons/fi';
-import { FaInstagram, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import { useAuth } from '@/hooks/useAuth';
+import SocialAccountItem from './SocialAccountItem';
+import { getPlatformDisplayName } from './socialAccountsUtils';
+import PermissionsInfo from './PermissionsInfo';
 
 const SocialAccountsSettings = () => {
   const { user } = useAuth();
@@ -44,7 +44,7 @@ const SocialAccountsSettings = () => {
               
               loadedAccounts.push({
                 platform,
-                username: getPlatformDisplayName(platform), // This would come from the API in a real app
+                username: getPlatformDisplayName(platform),
                 connected: true,
                 lastSync: new Date(),
                 accessToken: auth.accessToken,
@@ -103,32 +103,6 @@ const SocialAccountsSettings = () => {
       window.removeEventListener('message', handleAuthMessage);
     };
   }, [user]);
-
-  const getPlatformDisplayName = (platform: MessageSource): string => {
-    switch (platform) {
-      case 'instagram':
-        return 'Instagram';
-      case 'facebook':
-        return 'Facebook';
-      case 'whatsapp':
-        return 'WhatsApp Business';
-      default:
-        return platform;
-    }
-  };
-
-  const getPlatformIcon = (platform: MessageSource) => {
-    switch (platform) {
-      case 'instagram':
-        return <FaInstagram className="text-[#E1306C] text-xl" />;
-      case 'facebook':
-        return <FaFacebook className="text-[#1877F2] text-xl" />;
-      case 'whatsapp':
-        return <FaWhatsapp className="text-[#25D366] text-xl" />;
-      default:
-        return null;
-    }
-  };
 
   const connectAccount = (platform: MessageSource) => {
     if (!user) {
@@ -198,44 +172,17 @@ const SocialAccountsSettings = () => {
           
           <div className="space-y-4">
             {accounts.map(account => (
-              <div key={account.platform} className="flex items-center justify-between p-4 border border-gray-200 rounded-md">
-                <div className="flex items-center gap-4">
-                  {getPlatformIcon(account.platform)}
-                  <div>
-                    <p className="font-medium">{getPlatformDisplayName(account.platform)}</p>
-                    <p className="text-sm text-gray-500">
-                      {account.connected 
-                        ? `Conectado como ${account.username}`
-                        : 'No conectado'}
-                    </p>
-                  </div>
-                </div>
-                
-                <Button
-                  variant={account.connected ? "outline" : "default"}
-                  onClick={() => account.connected 
-                    ? disconnectAccount(account.platform) 
-                    : connectAccount(account.platform)
-                  }
-                  disabled={loading[account.platform]}
-                >
-                  {loading[account.platform] && (
-                    <FiRefreshCw className="mr-2 h-4 w-4 animate-spin" />
-                  )}
-                  {account.connected ? "Desconectar" : "Conectar"}
-                </Button>
-              </div>
+              <SocialAccountItem
+                key={account.platform}
+                account={account}
+                loading={loading[account.platform]}
+                onConnect={connectAccount}
+                onDisconnect={disconnectAccount}
+              />
             ))}
           </div>
           
-          <div className="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-md">
-            <h3 className="text-sm font-medium mb-2">Sobre los permisos:</h3>
-            <p className="text-sm text-gray-600">
-              Humanizer solicita permisos para leer y enviar mensajes en tu nombre.
-              Nunca publicará contenido sin tu autorización explícita. Puedes revocar estos
-              permisos en cualquier momento.
-            </p>
-          </div>
+          <PermissionsInfo />
         </CardContent>
       </Card>
     </div>
