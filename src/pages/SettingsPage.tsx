@@ -3,6 +3,7 @@ import { useState } from "react";
 import AppLayout from "@/components/layout/AppLayout";
 import ToneSettings from "@/components/settings/ToneSettings";
 import SocialAccountsSettings from "@/components/settings/SocialAccountsSettings";
+import LanguageSettings from "@/components/settings/LanguageSettings";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FiSliders, FiUsers, FiGlobe, FiBell } from "react-icons/fi";
 
@@ -43,21 +44,7 @@ const SettingsPage = () => {
           </TabsContent>
           
           <TabsContent value="language">
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-              <h2 className="text-xl font-semibold mb-4">Configuración de idioma</h2>
-              <p className="text-gray-500 mb-6">
-                Configura el idioma principal y los idiomas secundarios para la detección y respuesta automática.
-              </p>
-              
-              <div className="space-y-4">
-                {/* Aquí irían los componentes para configurar idiomas */}
-                <div className="p-4 text-center">
-                  <p className="text-gray-500">
-                    Configuración de idiomas (en desarrollo)
-                  </p>
-                </div>
-              </div>
-            </div>
+            <LanguageSettings />
           </TabsContent>
           
           <TabsContent value="notifications">

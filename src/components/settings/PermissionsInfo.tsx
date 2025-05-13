@@ -6,7 +6,11 @@ const PermissionsInfo = () => {
       <p className="text-sm text-gray-600">
         Humanizer solicita permisos para leer y enviar mensajes en tu nombre.
         Nunca publicará contenido sin tu autorización explícita. Puedes revocar estos
-        permisos en cualquier momento.
+        permisos en cualquier momento desde la configuración de cada plataforma.
+      </p>
+      <p className="text-sm text-gray-600 mt-2">
+        La conexión con redes sociales permite analizar mensajes, detectar sentimientos
+        y responder automáticamente según tus preferencias de tono e idioma.
       </p>
     </div>
   );

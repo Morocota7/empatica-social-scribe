@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { AppSettings, ToneSettings } from "@/types";
+import { AppSettings, ToneSettings, LanguageSettings, LocationSettings } from "@/types";
 import { mockToneSettings } from "@/utils/mock-data";
 
 type AppLayoutProps = {
@@ -16,6 +16,16 @@ export function AppLayout({ children }: AppLayoutProps) {
     autoRespond: true,
     language: "es",
     notifications: true,
+    languageSettings: {
+      primaryLanguage: "es",
+      detectLanguage: true,
+      secondaryLanguages: ["en"]
+    },
+    locationSettings: {
+      country: "es",
+      timezone: "Europe/Madrid",
+      trackLocation: false
+    }
   });
 
   return (

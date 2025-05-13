@@ -62,12 +62,26 @@ export interface ToneSettings {
   academicLevel: number; // 1-10
 }
 
+export interface LocationSettings {
+  country: string;
+  timezone: string;
+  trackLocation: boolean;
+}
+
+export interface LanguageSettings {
+  primaryLanguage: string;
+  detectLanguage: boolean;
+  secondaryLanguages: string[];
+}
+
 export interface AppSettings {
   tones: ToneSettings[];
   darkMode: boolean;
   autoRespond: boolean;
   language: string;
   notifications: boolean;
+  languageSettings?: LanguageSettings;
+  locationSettings?: LocationSettings;
 }
 
 export interface AuthResponse {
