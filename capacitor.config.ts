@@ -10,7 +10,14 @@ const config: CapacitorConfig = {
     cleartext: true
   },
   android: {
-    path: 'android'
+    path: 'android',
+    buildOptions: {
+      keystorePath: null,
+      keystorePassword: null,
+      keystoreAlias: null,
+      keystoreAliasPassword: null,
+      releaseType: null,
+    }
   }
 };
 
